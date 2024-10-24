@@ -8,7 +8,7 @@ const login = require("./src/api/auth");
 //     res.send("Welcome to Dev Tinder API")
 // })
 
-app.get("/login",)
+app.get("/login",login);
 
 
 app.listen(7777 ,()=>{
