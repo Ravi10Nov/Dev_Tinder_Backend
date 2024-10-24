@@ -2,15 +2,20 @@ const express = require('express');
 
 const app = express();
 
-const login = require("./src/api/auth");
+const connectDB = require('./src/config/database');
 
-// app.use('/',(req,res)=>{
-//     res.send("Welcome to Dev Tinder API")
-// })
+const login = require("./src/api/auth");
 
 app.get("/login",login);
 
 
-app.listen(7777 ,()=>{
-    console.log("App is running on port 7777")
-})
+connectDB()
+    .then(() => {
+        console.log('Database connection established...');
+        app.listen(7777, () => {
+            console.log('App is running on port at 7777');
+        });
+    })
+    .catch((err) => {
+        console.error('Database can not be connected')
+    });
